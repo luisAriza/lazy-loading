@@ -1,3 +1,5 @@
+import { registerImage } from "./lazy";
+
 const max = 122;
 const min = 1;
 const random = () => Math.floor(Math.random() * (max - min)) + min;
@@ -9,7 +11,7 @@ const createImageNode = () => {
   const imagen = document.createElement("img");
   imagen.className = "mx-auto";
   imagen.width = "320";
-  imagen.src = `https://randomfox.ca/images/${random()}.jpg`;
+  imagen.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
 
   container.appendChild(imagen);
 
@@ -22,6 +24,7 @@ const addBoton = document.querySelector("button");
 const addImage = () => {
   const newImage = createImageNode();
   mountNode.appendChild(newImage);
+  registerImage(newImage);
 };
 
 addBoton.addEventListener("click", addImage);
