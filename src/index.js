@@ -1,17 +1,16 @@
 import { registerImage } from "./lazy";
 
-const max = 122;
-const min = 1;
-const random = () => Math.floor(Math.random() * (max - min)) + min;
-
-const createImageNode = () => {
+const createImageNode = (number) => {
   const container = document.createElement("figure");
   container.className = "p-4";
 
   const imagen = document.createElement("img");
+  imagen.dataset.src = `https://randomfox.ca/images/${number}.jpg`;
   imagen.className = "mx-auto";
-  imagen.width = "320";
-  imagen.dataset.src = `https://randomfox.ca/images/${random()}.jpg`;
+  /* Para lograr el mejor resultado del lazy loading
+    es importante especificar el width y el height */
+  imagen.width = "400";
+  imagen.height = "400";
 
   container.appendChild(imagen);
 
@@ -19,12 +18,9 @@ const createImageNode = () => {
 };
 
 const mountNode = document.getElementById("images");
-const addBoton = document.querySelector("button");
 
-const addImage = () => {
-  const newImage = createImageNode();
-  mountNode.appendChild(newImage);
+for (let i = 1; i <= 122; i++) {
+  const createImage = createImageNode(i);
+  const newImage = mountNode.appendChild(createImage);
   registerImage(newImage);
-};
-
-addBoton.addEventListener("click", addImage);
+}
