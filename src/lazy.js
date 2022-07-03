@@ -1,6 +1,7 @@
-const isIntersecting = (entry) => {
+const intersecting = (entry) => {
   return entry.isIntersecting;
 };
+
 const loadImage = (entry) => {
   const container = entry.target;
   const imagen = container.firstChild;
@@ -12,7 +13,7 @@ const loadImage = (entry) => {
 };
 
 const observador = new IntersectionObserver((entries) => {
-  entries.filter(isIntersecting).forEach(loadImage);
+  entries.filter(intersecting).forEach(loadImage);
 });
 
 export const registerImage = (imagen) => {
