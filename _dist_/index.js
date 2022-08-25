@@ -20,6 +20,7 @@ const createImageNode = (number) => {
 const mountNode = document.getElementById("images");
 
 for (let i = 1; i <= 122; i++) {
-  const newImage = mountNode.appendChild(createImageNode(i));
+  const createImage = createImageNode(i);
+  const newImage = mountNode.appendChild(createImage);
   registerImage(newImage);
 }
